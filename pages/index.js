@@ -1,4 +1,4 @@
-import { Container, Box, Input, Button } from "@chakra-ui/react";
+import { Container } from "@chakra-ui/react";
 
 import { Logo } from "../components";
 
