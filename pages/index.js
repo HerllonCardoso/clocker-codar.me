@@ -99,7 +99,7 @@ export default function Home() {
             isLoading={isSubmitting}
             p={4}
           >
-            Entrar
+            Login
           </Button>
         </Box>
       </Box>
