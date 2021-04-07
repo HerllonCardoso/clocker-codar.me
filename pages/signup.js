@@ -2,6 +2,7 @@ import Link from 'next/link'
 import { useFormik } from "formik";
 import * as yup from "yup";
 
+
 import {
   Container,
   Box,
@@ -11,11 +12,14 @@ import {
   FormControl,
   FormLabel,
   FormHelperText,
+  InputLeftAddon,
+  InputGroup,
   isSubmitting,
 } from "@chakra-ui/react";
 
 import { Logo } from "../components";
 import firebase from "../config/firebase";
+
 
 const validationSchema = yup.object().shape({
   email: yup
@@ -39,7 +43,7 @@ export default function Home() {
       try {
         const user = await firebase
           .auth()
-          .signInWithEmailAndPassword(values.email, values.password);
+          .createUserWithEmailAndPassword(values.email, values.password);
         console.log(user);
       } catch (err) {
         console.log(err);
@@ -91,6 +95,24 @@ export default function Home() {
           )}
         </FormControl>
 
+        <FormControl id="username" p={4} isRequired>
+          <InputGroup size="lg">
+            <InputLeftAddon children="children.work/" />
+            <Input
+              size="lg"
+              type="username"
+              value={values.username}
+              onChange={handleChange}
+              onBlur={handleBlur}
+            />
+          </InputGroup>
+          {touched.username && (
+            <FormHelperText textColor="#e74c3c">
+              {errors.username}
+            </FormHelperText>
+          )}
+        </FormControl>
+
         <Box p={4}>
           <Button
             colorScheme="blue"
@@ -104,7 +126,8 @@ export default function Home() {
         </Box>
       </Box>
 
-      <Link href="/signup">Don't have an account? Sign Up!</Link>
+      <Link href="/">Already have an account? Log In!</Link>
+
     </Container>
   );
 }
