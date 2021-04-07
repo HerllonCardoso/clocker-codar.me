@@ -23,7 +23,6 @@ const validationSchema = yup.object().shape({
     .email("Email inválido")
     .required("Preenchimento obrigatório"),
   password: yup.string().required("Preenchimento obrigatório"),
-  username: yup.string().required("Preenchimento obrigatório"),
 });
 
 export default function Home() {
