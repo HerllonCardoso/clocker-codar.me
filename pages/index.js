@@ -1,5 +1,6 @@
 import { useFormik } from "formik";
 import * as yup from "yup";
+import firebase from './../config/firebase'
 
 import {
   Container,
@@ -12,6 +13,7 @@ import {
   FormHelperText,
   InputLeftAddon,
   InputGroup,
+  isSubmitting
 } from "@chakra-ui/react";
 
 import { Logo } from "../components";
@@ -34,7 +36,9 @@ export default function Home() {
     handleBlur,
     handleChange,
   } = useFormik({
-    onSubmit: () => {},
+    onSubmit: (values, form) => {
+      
+    },
     validationSchema,
     initialValues: {
       email: "",
@@ -100,7 +104,7 @@ export default function Home() {
         </FormControl>
 
         <Box p={4}>
-          <Button width="100%" onClick={handleSubmit} p={4}>
+          <Button colorScheme="blue" width="100%" onClick={handleSubmit} isLoading={!isSubmitting} p={4}>
             Entrar
           </Button>
         </Box>
